@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [16/Apr/2023:17:22:09 +0800] "GET /brand-dome HTTP/1.1" 302 - http-bio-80-exec-1 0
+0:0:0:0:0:0:0:1 - - [16/Apr/2023:17:22:09 +0800] "GET /brand-dome/ HTTP/1.1" 200 244 http-bio-80-exec-3 8
+0:0:0:0:0:0:0:1 - - [16/Apr/2023:17:22:46 +0800] "GET /brand-dome/login.jsp HTTP/1.1" 200 770 http-bio-80-exec-4 497
+0:0:0:0:0:0:0:1 - - [16/Apr/2023:17:23:01 +0800] "POST /brand-dome/loginServlet HTTP/1.1" 302 - http-bio-80-exec-5 266
+0:0:0:0:0:0:0:1 - - [16/Apr/2023:17:23:01 +0800] "GET /brand-dome/selectAllBrandServlet HTTP/1.1" 200 4407 http-bio-80-exec-6 26

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>brand</title>
+</head>
+<body>
+
+<div id="app">
+    <h1 >欢迎您</h1>
+
+    <table border="1" cellpadding="0" cellspacing="0" width="80%" id="brandTable">
+        <div>
+            <tr align="center">
+                <th>id</th>
+                <th>品牌名称</th>
+                <th>企业名称</th>
+                <th>排序</th>
+                <th>描述信息</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </div>
+        <div>
+            <tr v-for="brand in brands" align="center">
+                <td>{{brand.id}}</td>
+                <td>{{brand.brandName}}</td>
+                <td>{{brand.companyName}}</td>
+                <td>{{brand.ordered}}</td>
+                <td>{{brand.description}}</td>
+                <td>{{brand.status==1?"启用":"禁用"}}</td>
+                <td>
+                    <a href="#" id="updataBrand" v-on:click="updataBrand">修改</a>
+                    <a href="#" id="deleteBrand" v-on:click="deleteBrand" onclick="javascript:return del()">删除</a>
+                </td>
+            </tr>
+        </div>
+
+    </table>
+    <input type="button" value="新增" id="add"><br>
+</div>
+
+<script src="js/axios-0.18.0.js"></script>
+<script src="js/vue.js"></script>
+<script>
+    var vue=new Vue({
+        el: "#app",
+        data(){
+          return{
+              brands:[],
+              brand_id:""
+          }
+        },
+        methods:{
+            updataBrand(){
+                var _this=this;
+                document.getElementById("updataBrand").href="/brand-dome/selectByIdBrandServlet?id="+_this.brand_id;
+                // axios({
+                //     method:"get",
+                //     url:"/brand-dome/selectByIdBrandServlet?id="+_this.brand_id
+                // })
+            },
+            deleteBrand(){
+                var _this=this;
+                axios({
+                    method:"get",
+                    url:"/brand-dome/deleteBrandServlet?id="+_this.brand_id
+                })
+            }
+        },
+        mounted(){
+            var _this=this;
+            axios({
+                method: "get",
+                url: "http://localhost/brand-dome/selectAllBrandServlet1"
+            }).then(function (resp){
+                _this.brands=resp.data;
+            })
+        }
+    })
+
+</script>
+
+<script>
+    document.getElementById("add").onclick = function () {
+        location.href = "/brand-dome/addBrand.html"
+    }
+
+    function del() {
+        var tag = confirm("确认删除？");
+        return tag;
+    }
+</script>
+</body>
+</html>
